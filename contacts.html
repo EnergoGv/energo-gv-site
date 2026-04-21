@@ -1,149 +1,521 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Контакты — ЭнергоГвардия</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Контакты — ЭнергоГвардия</title>
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background-color: #f5f6f8;
-  color: #222;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-.nav {
-  padding: 20px 40px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
-}
+  <style>
+    :root {
+      --bg: #272727;
+      --text: #f8f8f8;
+      --muted: #9a9a9a;
+      --accent: #d7c7a3;
+      --line: rgba(248, 248, 248, 0.10);
+      --max: 1440px;
+      --pad-x: 72px;
+    }
 
-.nav a {
-  margin-right: 20px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.container {
-  max-width: 900px;
-  margin: 100px auto;
-  padding: 0 20px;
-  text-align: center;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-h1 {
-  font-size: 42px;
-  margin-bottom: 20px;
-}
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-p {
-  font-size: 18px;
-  line-height: 1.7;
-  color: #555;
-  margin-bottom: 18px;
-}
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-left: var(--pad-x);
+      padding-right: var(--pad-x);
+    }
 
-.contact-card {
-  background: #fff;
-  padding: 36px;
-  border-radius: 10px;
-  border: 1px solid #ececec;
-  margin-top: 40px;
-}
+    .header {
+      border-bottom: 1px solid var(--line);
+    }
 
-.contact-item {
-  margin-bottom: 20px;
-}
+    .header-inner {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
 
-.contact-label {
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #888;
-  margin-bottom: 6px;
-}
+    .nav {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
 
-.contact-value {
-  font-size: 20px;
-  color: #222;
-  font-weight: 600;
-}
+    .nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s ease;
+    }
 
-.contact-value a {
-  color: #2b6edc;
-  text-decoration: none;
-}
+    .nav a:hover {
+      color: var(--accent);
+    }
 
-.contact-value a:hover {
-  text-decoration: underline;
-}
+    .nav a.active {
+      color: var(--accent);
+    }
 
-.button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 28px;
-  background: #2b6edc;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-}
+    .page-hero {
+      border-bottom: 1px solid var(--line);
+    }
 
-.button:hover {
-  background: #1f56b3;
-}
-</style>
+    .page-hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 72px;
+      align-items: start;
+      padding-top: 104px;
+      padding-bottom: 88px;
+    }
 
+    .eyebrow {
+      margin: 0 0 22px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .page-title {
+      margin: 0 0 28px;
+      font-size: 52px;
+      line-height: 1.04;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+
+    .page-title .accent {
+      color: var(--accent);
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 760px;
+      font-size: 22px;
+      line-height: 1.56;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .hero-copy {
+      margin: 0 0 22px;
+      max-width: 580px;
+      font-size: 18px;
+      line-height: 1.72;
+      color: var(--text);
+    }
+
+    .hero-copy:last-child {
+      margin-bottom: 0;
+    }
+
+    .section {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 56px;
+      align-items: start;
+      padding-top: 76px;
+      padding-bottom: 76px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.12;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .section-content p {
+      margin: 0 0 22px;
+      max-width: 920px;
+      font-size: 18px;
+      line-height: 1.72;
+      color: var(--text);
+    }
+
+    .section-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px 38px;
+    }
+
+    .contact-item {
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-label {
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-value {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.45;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .contact-value a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .contact-value a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px 38px;
+    }
+
+    .note-item {
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .note-item h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .note-item p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.68;
+      color: var(--muted);
+    }
+
+    .cta-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .cta-title {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.12;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .cta-text {
+      margin: 0;
+      max-width: 780px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 24px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #272727;
+    }
+
+    .btn-primary:hover {
+      background: #cab98f;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: rgba(248, 248, 248, 0.18);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .footer {
+      padding-top: 28px;
+      padding-bottom: 42px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1180px) {
+      .page-hero-grid,
+      .section-grid,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .contacts-grid,
+      .notes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --pad-x: 20px;
+      }
+
+      .header-inner {
+        min-height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        justify-content: flex-start;
+      }
+
+      .nav {
+        gap: 18px;
+      }
+
+      .page-hero-grid {
+        padding-top: 64px;
+        padding-bottom: 64px;
+        gap: 42px;
+      }
+
+      .page-title {
+        font-size: 36px;
+      }
+
+      .lead,
+      .hero-copy,
+      .section-content p,
+      .cta-text {
+        font-size: 16px;
+      }
+
+      .section-grid {
+        padding-top: 56px;
+        padding-bottom: 56px;
+      }
+
+      .section-title,
+      .cta-title {
+        font-size: 24px;
+      }
+
+      .contact-value {
+        font-size: 18px;
+      }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<nav class="nav">
-<a href="index.html">Главная</a>
-<a href="about.html">О компании</a>
-<a href="services.html">Услуги</a>
-<a href="contacts.html">Контакты</a>
-</nav>
-
-<div class="container">
-
-<h1>Контакты</h1>
-
-<p>
-Свяжитесь с нами, чтобы обсудить проект, получить консультацию
-или направить запрос на подбор решения и расчёт.
-</p>
-
-<div class="contact-card">
-
-  <div class="contact-item">
-    <div class="contact-label">Telegram</div>
-    <div class="contact-value">
-      <a href="https://t.me/energo_gv_bot" target="_blank">@energo_gv_bot</a>
+  <header class="header">
+    <div class="container header-inner">
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="about.html">О компании</a>
+        <a href="services.html">Услуги</a>
+        <a href="contacts.html" class="active">Контакты</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <div class="contact-item">
-    <div class="contact-label">Email</div>
-    <div class="contact-value">
-      <a href="mailto:info@energo-gv.ru">info@energo-gv.ru</a>
+  <section class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <p class="eyebrow">Контакты</p>
+
+        <h1 class="page-title">
+          <span class="accent">Связь по проекту</span><br>
+          и инженерной задаче
+        </h1>
+
+        <p class="lead">
+          Если вам требуется проектирование, подбор инженерных решений,
+          поставка оборудования или сопровождение реализации объекта,
+          свяжитесь с нами удобным способом.
+        </p>
+      </div>
+
+      <div>
+        <p class="hero-copy">
+          Мы работаем с объектами девелопмента, энергетики и инфраструктуры,
+          подключаясь к задаче как на ранней стадии проектирования,
+          так и на этапе реализации.
+        </p>
+
+        <p class="hero-copy">
+          Для первичного контакта достаточно коротко описать объект,
+          стадию проекта и вашу задачу — дальше мы соберём оптимальный формат взаимодействия.
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="contact-item">
-    <div class="contact-label">География работы</div>
-    <div class="contact-value">Москва, Россия</div>
-  </div>
+  <section class="section">
+    <div class="container section-grid">
+      <h2 class="section-title">Контактная информация</h2>
 
-</div>
+      <div class="contacts-grid">
+        <div class="contact-item">
+          <p class="contact-label">Электронная почта</p>
+          <p class="contact-value">
+            <a href="mailto:info@energo-gv.ru">info@energo-gv.ru</a>
+          </p>
+        </div>
 
-<a class="button" href="https://t.me/energo_gv_bot" target="_blank">
-Написать в Telegram
-</a>
+        <div class="contact-item">
+          <p class="contact-label">Telegram</p>
+          <p class="contact-value">
+            <a href="https://t.me/energo_gv_bot" target="_blank" rel="noopener noreferrer">@energo_gv_bot</a>
+          </p>
+        </div>
 
-</div>
+        <div class="contact-item">
+          <p class="contact-label">География работы</p>
+          <p class="contact-value">Москва, Россия</p>
+        </div>
+
+        <div class="contact-item">
+          <p class="contact-label">Формат взаимодействия</p>
+          <p class="contact-value">Проектирование, поставка, инженерное сопровождение</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container section-grid">
+      <h2 class="section-title">Что указать в обращении</h2>
+
+      <div class="notes-grid">
+        <div class="note-item">
+          <h3>Тип объекта</h3>
+          <p>Кратко обозначьте, что это: жилой комплекс, общественное пространство, инфраструктурный или энергетический объект.</p>
+        </div>
+
+        <div class="note-item">
+          <h3>Стадия проекта</h3>
+          <p>Укажите, на каком этапе находится объект: концепция, проектирование, комплектация, строительство или сопровождение реализации.</p>
+        </div>
+
+        <div class="note-item">
+          <h3>Задача</h3>
+          <p>Опишите, что требуется: система электроснабжения, светотехническое решение, подбор оборудования или инженерная координация.</p>
+        </div>
+
+        <div class="note-item">
+          <h3>Сроки и вводные</h3>
+          <p>Если есть дедлайны, ограничения, исходные данные или специфика объекта — лучше обозначить их сразу.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta-box">
+      <div>
+        <h2 class="cta-title">Отправить запрос</h2>
+        <p class="cta-text">
+          Вы можете написать нам на электронную почту или перейти в Telegram.
+          Для старта достаточно краткого описания объекта и задачи — дальше мы подключимся к диалогу
+          и предложим рабочий формат взаимодействия.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="mailto:info@energo-gv.ru">Написать на почту</a>
+        <a class="btn btn-secondary" href="https://t.me/energo_gv_bot" target="_blank" rel="noopener noreferrer">Открыть Telegram</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>ЭнергоГвардия</div>
+      <div>© 2025</div>
+    </div>
+  </footer>
 
 </body>
 </html>
