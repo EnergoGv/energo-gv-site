@@ -1,37 +1,528 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Энергогвардия</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ЭнергоГвардия</title>
 
-    <!-- ВАЖНО: корректное подключение CSS -->
-    <link rel="stylesheet" href="css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #272727;
+      --text: #f8f8f8;
+      --muted: #9a9a9a;
+      --accent: #d7c7a3;
+      --line: rgba(248, 248, 248, 0.10);
+      --max: 1440px;
+      --pad-x: 72px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-left: var(--pad-x);
+      padding-right: var(--pad-x);
+    }
+
+    .header {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .nav {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 72px;
+      align-items: start;
+      padding-top: 104px;
+      padding-bottom: 92px;
+    }
+
+    .hero-left,
+    .hero-right {
+      min-width: 0;
+    }
+
+    .hero-right {
+      padding-top: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 22px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-title {
+      margin: 0 0 28px;
+      max-width: 760px;
+      font-size: 52px;
+      line-height: 1.04;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+
+    .hero-title .accent {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      max-width: 760px;
+      font-size: 22px;
+      line-height: 1.52;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .hero-copy {
+      margin: 0 0 22px;
+      max-width: 560px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .hero-copy:last-of-type {
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 24px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #272727;
+    }
+
+    .btn-primary:hover {
+      background: #cab98f;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: rgba(248, 248, 248, 0.18);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .section {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 56px;
+      align-items: start;
+      padding-top: 76px;
+      padding-bottom: 76px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.12;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .section-content p {
+      margin: 0 0 22px;
+      max-width: 920px;
+      font-size: 18px;
+      line-height: 1.72;
+      color: var(--text);
+    }
+
+    .section-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px 38px;
+    }
+
+    .service-item {
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .service-item h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .service-item p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.68;
+      color: var(--muted);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px 38px;
+    }
+
+    .project-item {
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .project-item h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .project-item p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.68;
+      color: var(--muted);
+    }
+
+    .cta-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .cta-title {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.12;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-text {
+      margin: 0;
+      max-width: 780px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .footer {
+      padding-top: 28px;
+      padding-bottom: 42px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1180px) {
+      .hero-grid,
+      .section-grid,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        padding-top: 0;
+      }
+
+      .services-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --pad-x: 20px;
+      }
+
+      .header-inner {
+        min-height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        justify-content: flex-start;
+      }
+
+      .nav {
+        gap: 18px;
+      }
+
+      .hero-grid {
+        padding-top: 64px;
+        padding-bottom: 64px;
+        gap: 42px;
+      }
+
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-subtitle,
+      .hero-copy,
+      .section-content p,
+      .cta-text {
+        font-size: 16px;
+      }
+
+      .section-grid {
+        padding-top: 56px;
+        padding-bottom: 56px;
+      }
+
+      .section-title,
+      .cta-title {
+        font-size: 24px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <nav class="nav">
+  <header class="header">
+    <div class="container header-inner">
+      <nav class="nav">
         <a href="index.html">Главная</a>
-        <a href="about.html">О нас</a>
+        <a href="about.html">О компании</a>
         <a href="services.html">Услуги</a>
         <a href="contacts.html">Контакты</a>
-    </nav>
+      </nav>
+    </div>
+  </header>
 
-    <main class="container">
-        <h1>Энергогвардия</h1>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <p class="eyebrow">ПРОЕКТИРОВАНИЕ · ЭЛЕКТРОСНАБЖЕНИЕ · СВЕТОТЕХНИКА</p>
 
-        <p>
-            Пока сайт находится в разработке, вы можете воспользоваться нашим Telegram-ботом —
-            он поможет оставить заявку, задать вопрос и оперативно получить обратную связь.
+        <h1 class="hero-title">
+          <span class="accent">Инженерная компания</span><br>
+          полного цикла
+        </h1>
+
+        <p class="hero-subtitle">
+          Проектируем, поставляем и реализуем инженерные решения
+          для девелопмента, коммерческой недвижимости и инфраструктурных объектов.
+        </p>
+      </div>
+
+      <div class="hero-right">
+        <p class="hero-copy">
+          ЭнергоГвардия — инженерно-проектная компания, специализирующаяся
+          на системах электроснабжения и светотехнических решениях.
         </p>
 
-        <a
-            class="button"
-            href="https://t.me/energo_gv_bot"
-            target="_blank"
-        >
-            Открыть Telegram-бот
-        </a>
-    </main>
+        <p class="hero-copy">
+          Работаем по стандартам международных инженерных бюро:
+          быстро, структурно, технологично и прозрачно.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="contacts.html">Получить расчёт проекта</a>
+          <a class="btn btn-secondary" href="services.html">Посмотреть услуги</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container section-grid">
+      <h2 class="section-title">О компании</h2>
+
+      <div class="section-content">
+        <p>
+          Наша миссия — создавать инженерные и архитектурно-технические решения,
+          которые работают в реальности, выдерживают сроки и повышают эффективность строительства.
+        </p>
+
+        <p>
+          Мы соединяем инженерию, архитектуру и бизнес-подход, превращая сложные задачи
+          в точные, реализуемые и экономически эффективные решения.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container section-grid">
+      <h2 class="section-title">Ключевые направления</h2>
+
+      <div class="services-grid">
+        <div class="service-item">
+          <h3>Проектирование систем электроснабжения</h3>
+          <p>Рабочая документация, схемы, расчёты, спецификации и инженерная координация проекта.</p>
+        </div>
+
+        <div class="service-item">
+          <h3>Светотехнические решения</h3>
+          <p>Концепции освещения, светорасчёты, подбор оборудования и сценарии освещения.</p>
+        </div>
+
+        <div class="service-item">
+          <h3>Подбор и поставка оборудования</h3>
+          <p>Комплектация объектов электротехническим и светотехническим оборудованием под проектные требования.</p>
+        </div>
+
+        <div class="service-item">
+          <h3>Сопровождение реализации</h3>
+          <p>Инженерная поддержка проекта на этапе строительства и реализации.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container section-grid">
+      <h2 class="section-title">Реализованные проекты</h2>
+
+      <div class="projects-grid">
+        <div class="project-item">
+          <h3>Саратовская ГЭС</h3>
+          <p>Энергетическая инфраструктура</p>
+        </div>
+
+        <div class="project-item">
+          <h3>Дом культуры ГЭС-2</h3>
+          <p>Культурный объект</p>
+        </div>
+
+        <div class="project-item">
+          <h3>Парк Патриот</h3>
+          <p>Инфраструктурный комплекс</p>
+        </div>
+
+        <div class="project-item">
+          <h3>ЖК Eleven</h3>
+          <p>Жилой комплекс</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta-box">
+      <div>
+        <h2 class="cta-title">Обсудим ваш проект</h2>
+        <p class="cta-text">
+          Если вам требуется проектирование, инженерная координация, подбор оборудования
+          или сопровождение объекта, свяжитесь с нами — подключимся к задаче и соберём решение
+          под конкретные требования объекта.
+        </p>
+      </div>
+
+      <div>
+        <a class="btn btn-primary" href="contacts.html">Оставить заявку</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>ЭнергоГвардия</div>
+      <div>© 2025</div>
+    </div>
+  </footer>
 
 </body>
 </html>

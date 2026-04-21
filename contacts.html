@@ -1,27 +1,149 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Контакты — Энергогвардия</title>
-  <link rel="stylesheet" href="css/main.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контакты — ЭнергоГвардия</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f5f6f8;
+  color: #222;
+}
+
+.nav {
+  padding: 20px 40px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.nav a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+
+.container {
+  max-width: 900px;
+  margin: 100px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+.contact-card {
+  background: #fff;
+  padding: 36px;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  margin-top: 40px;
+}
+
+.contact-item {
+  margin-bottom: 20px;
+}
+
+.contact-label {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.contact-value {
+  font-size: 20px;
+  color: #222;
+  font-weight: 600;
+}
+
+.contact-value a {
+  color: #2b6edc;
+  text-decoration: none;
+}
+
+.contact-value a:hover {
+  text-decoration: underline;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 28px;
+  background: #2b6edc;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.button:hover {
+  background: #1f56b3;
+}
+</style>
+
 </head>
 
 <body>
-  <header>
-    <nav class="nav">
-      <a href="index.html" class="nav">Главная</a>
-      <a href="about.html" class="nav">О нас</a>
-      <a href="services.html" class="nav">Услуги</a>
-      <a href="contacts.html" class="nav">Контакты</a>
-    </nav>
-  </header>
 
-  <div class="container">
-    <h1>Контакты</h1>
-    <p>Email: <a href="mailto:info@energo-gv.ru">info@energo-gv.ru</a></p>
-    <p>Телефон: +7 (495) 123-45-67</p>
-    <p>Telegram: <a href="https://t.me/EnergoGV_Bot" target="_blank">@EnergoGV_Bot</a></p>
+<nav class="nav">
+<a href="index.html">Главная</a>
+<a href="about.html">О компании</a>
+<a href="services.html">Услуги</a>
+<a href="contacts.html">Контакты</a>
+</nav>
+
+<div class="container">
+
+<h1>Контакты</h1>
+
+<p>
+Свяжитесь с нами, чтобы обсудить проект, получить консультацию
+или направить запрос на подбор решения и расчёт.
+</p>
+
+<div class="contact-card">
+
+  <div class="contact-item">
+    <div class="contact-label">Telegram</div>
+    <div class="contact-value">
+      <a href="https://t.me/energo_gv_bot" target="_blank">@energo_gv_bot</a>
+    </div>
   </div>
+
+  <div class="contact-item">
+    <div class="contact-label">Email</div>
+    <div class="contact-value">
+      <a href="mailto:info@energo-gv.ru">info@energo-gv.ru</a>
+    </div>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-label">География работы</div>
+    <div class="contact-value">Москва, Россия</div>
+  </div>
+
+</div>
+
+<a class="button" href="https://t.me/energo_gv_bot" target="_blank">
+Написать в Telegram
+</a>
+
+</div>
+
 </body>
 </html>
